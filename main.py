@@ -1,5 +1,5 @@
 import datetime as dt 
-
+import webbrowser as wb
 print("FRIDAY IS ONLINE")
 def greet():
     print("hello sir")
@@ -7,6 +7,9 @@ def status():
     print("all systems are operational")
 def shutdown():
     print("shutting down sir")
+def open_website(domain):
+    wb.open(f"https://www.{domain}.com/")
+    print("browser opened")
 def date_time():
     current_time = dt.datetime.now()
     format_time = current_time.strftime("%I:%M %p")
@@ -15,7 +18,7 @@ commands = {
     "hello": greet,
     "status":status, 
     "time": date_time, 
-    "exit": shutdown
+    "exit": shutdown,
     }
 
 while True:
@@ -23,8 +26,18 @@ while True:
     query = input("whats your query")
     strip_query = query.strip()
     lower_query = strip_query.lower()
-
+    split_query = lower_query.split()
+         
+    
     functions = commands.get(lower_query)
+    if len(split_query) == 2:
+        if split_query[0] == "open":
+
+            open_website(split_query[1])
+            continue
+        else:
+            print("i dont know this cmd yet")
+            continue
     if functions is not None:
         functions()
         if functions == shutdown:
