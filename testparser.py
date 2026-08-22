@@ -80,11 +80,9 @@ applications = {
 while True:
 
     query = listen()
+    print("friday heard : ", query)
     cleaned_query = clean_command(query)
     split_query = cleaned_query.split()
-    print("RAW:", repr(query))
-    print("CLEAN:", repr(cleaned_query))
-    print("WORDS:", split_query)
          
     
     if "open" in split_query:
